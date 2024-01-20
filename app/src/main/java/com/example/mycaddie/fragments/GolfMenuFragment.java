@@ -1,5 +1,8 @@
 package com.example.mycaddie.fragments;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,6 +21,7 @@ import android.view.ViewGroup;
 public class GolfMenuFragment extends Fragment {
 
     private GolfMenuViewModel mViewModel;
+    private Toolbar toolbar;
     FragmentGolfMenuBinding binding;
     NavController navController;
 
@@ -45,6 +49,28 @@ public class GolfMenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setUpButtons();
+    }
+
+    private void setUpButtons() {
+
+        toolbar = binding.toolbar;
+        toolbar.setOnClickListener(view -> {goBack();});
 
     }
+
+    private void goBack() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            activity.setSupportActionBar(toolbar);
+        }
+
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setTitle("Golf Menu");
+        }
+    }
+
 }
