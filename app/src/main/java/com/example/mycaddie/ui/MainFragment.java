@@ -44,4 +44,26 @@ public class MainFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setUpButtons();
+
+    }
+
+    private void setUpButtons() {
+        binding.golfImg.setOnClickListener(v -> {
+            moveToGolfMenu();
+        });
+        binding.golfTxt.setOnClickListener(v -> {
+            moveToGolfMenu();
+        });
+    }
+
+    private void moveToGolfMenu() {
+        navController.navigate(R.id.action_mainFragment_to_golfMenuFragment);
+    }
+
 }

@@ -10,7 +10,17 @@
         android:name="com.example.mycaddie.ui.MainFragment"
         android:label="First Fragment"
         tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_golfMenuFragment"
+            app:destination="@id/golfMenuFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/golfMenuFragment"
+        android:name="com.example.mycaddie.fragments.GolfMenuFragment"
+        android:label="Golf Menu Fragment"
+        tools:layout="@layout/fragment_golf_menu">
+    </fragment>
 
 </navigation>
