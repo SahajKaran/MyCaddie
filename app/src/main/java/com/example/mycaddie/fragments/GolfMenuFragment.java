@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mycaddie.databinding.FragmentGolfMenuBinding; // Update this import
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -41,6 +42,7 @@ public class GolfMenuFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentGolfMenuBinding.inflate(inflater,container,false);
         navController = NavHostFragment.findNavController(this);
+        setHasOptionsMenu(true);
 
         return binding.getRoot();
     }
@@ -53,13 +55,13 @@ public class GolfMenuFragment extends Fragment {
     }
 
     private void setUpButtons() {
-
-        toolbar = binding.toolbar;
-        toolbar.setOnClickListener(view -> {goBack();});
+        setToolbar();
 
     }
 
-    private void goBack() {
+    private void setToolbar() {
+        toolbar = binding.toolbar;
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             activity.setSupportActionBar(toolbar);
@@ -67,10 +69,20 @@ public class GolfMenuFragment extends Fragment {
 
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
+            actionBar.setTitle("Golf Menu");
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setTitle("Golf Menu");
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle the back button action
+            navController.navigateUp();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
