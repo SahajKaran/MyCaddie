@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.example.mycaddie.ui.MainFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_mainFragment_to_golfMenuFragment"
+            app:destination="@id/golfMenuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/golfMenuFragment"
+        android:name="com.example.mycaddie.fragments.GolfMenuFragment"
+        android:label="Golf Menu Fragment"
+        tools:layout="@layout/fragment_golf_menu">
+
+        <action
+            android:id="@+id/action_golfMenuFragment_to_StartRoundFragment"
+            app:destination="@id/startRoundFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/startRoundFragment"
+        android:name="com.example.mycaddie.fragments.StartRoundFragment"
+        android:label="Start Round Fragment"
+        tools:layout="@layout/fragment_start_round">
+
+    </fragment>
+
+</navigation>
