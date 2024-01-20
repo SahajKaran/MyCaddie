@@ -13,36 +13,37 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.mycaddie.R;
-import com.example.mycaddie.databinding.FragmentGolfMenuBinding; // Update this import
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class GolfMenuFragment extends Fragment {
+import com.example.mycaddie.R;
+import com.example.mycaddie.databinding.FragmentStartRoundBinding;
 
-    private GolfMenuViewModel mViewModel;
+public class StartRoundFragment extends Fragment {
+
+    private StartRoundViewModel mViewModel;
     private Toolbar toolbar;
-    FragmentGolfMenuBinding binding;
+    FragmentStartRoundBinding binding;
     NavController navController;
 
-    public static GolfMenuFragment newInstance() {
-        return new GolfMenuFragment();
+    public static StartRoundFragment newInstance() {
+        return new StartRoundFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(GolfMenuViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(StartRoundViewModel.class);
 
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentGolfMenuBinding.inflate(inflater,container,false);
+        binding = FragmentStartRoundBinding.inflate(inflater,container,false);
         navController = NavHostFragment.findNavController(this);
         setHasOptionsMenu(true);
 
@@ -58,12 +59,7 @@ public class GolfMenuFragment extends Fragment {
 
     private void setUpButtons() {
         setToolbar();
-        binding.startImg.setOnClickListener(view -> {moveToStartRound();});
-        binding.startTxt.setOnClickListener(view -> {moveToStartRound();});
-    }
 
-    private void moveToStartRound() {
-        navController.navigate(R.id.action_golfMenuFragment_to_StartRoundFragment);
     }
 
     private void setToolbar() {
@@ -76,7 +72,7 @@ public class GolfMenuFragment extends Fragment {
 
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Golf Menu");
+            actionBar.setTitle("Start Round");
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
@@ -91,5 +87,4 @@ public class GolfMenuFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

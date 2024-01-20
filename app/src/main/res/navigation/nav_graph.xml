@@ -21,6 +21,18 @@
         android:name="com.example.mycaddie.fragments.GolfMenuFragment"
         android:label="Golf Menu Fragment"
         tools:layout="@layout/fragment_golf_menu">
+
+        <action
+            android:id="@+id/action_golfMenuFragment_to_StartRoundFragment"
+            app:destination="@id/startRoundFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/startRoundFragment"
+        android:name="com.example.mycaddie.fragments.StartRoundFragment"
+        android:label="Start Round Fragment"
+        tools:layout="@layout/fragment_start_round">
+
     </fragment>
 
 </navigation>
