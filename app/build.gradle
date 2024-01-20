@@ -14,6 +14,12 @@ android {
         versionCode 1
         versionName "1.0"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        String mapApiKey = properties.getProperty('Map_Api_Key')
+        buildConfigField 'String', 'MAP_API_KEY', "\"${mapApiKey}\""
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,6 +55,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
-
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }
