@@ -24,7 +24,6 @@ import com.example.mycaddie.databinding.FragmentStartRoundBinding;
 public class StartRoundFragment extends Fragment {
 
     private StartRoundViewModel mViewModel;
-    private Toolbar toolbar;
     FragmentStartRoundBinding binding;
     NavController navController;
 
@@ -45,7 +44,6 @@ public class StartRoundFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentStartRoundBinding.inflate(inflater,container,false);
         navController = NavHostFragment.findNavController(this);
-        setHasOptionsMenu(true);
 
         return binding.getRoot();
     }
@@ -54,37 +52,30 @@ public class StartRoundFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setUpToolbar();
         setUpButtons();
     }
 
     private void setUpButtons() {
-        setToolbar();
 
     }
 
-    private void setToolbar() {
-        toolbar = binding.toolbar;
-
+    private void setUpToolbar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            activity.setSupportActionBar(toolbar);
-        }
+            activity.setSupportActionBar(binding.toolbar);
 
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Start Round");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
+            ActionBar actionBar = activity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+            }
+
+            // Set Toolbar navigation click listener
+            binding.toolbar.setNavigationOnClickListener(v -> navController.navigateUp());
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            // Handle the back button action
-            navController.navigateUp();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
+
 }

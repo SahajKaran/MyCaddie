@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 public class GolfMenuFragment extends Fragment {
 
     private GolfMenuViewModel mViewModel;
-    private Toolbar toolbar;
     FragmentGolfMenuBinding binding;
     NavController navController;
 
@@ -44,7 +43,6 @@ public class GolfMenuFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentGolfMenuBinding.inflate(inflater,container,false);
         navController = NavHostFragment.findNavController(this);
-        setHasOptionsMenu(true);
 
         return binding.getRoot();
     }
@@ -53,11 +51,11 @@ public class GolfMenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setUpToolbar();
         setUpButtons();
     }
 
     private void setUpButtons() {
-        setToolbar();
         binding.startImg.setOnClickListener(view -> {moveToStartRound();});
         binding.startTxt.setOnClickListener(view -> {moveToStartRound();});
     }
@@ -66,30 +64,20 @@ public class GolfMenuFragment extends Fragment {
         navController.navigate(R.id.action_golfMenuFragment_to_StartRoundFragment);
     }
 
-    private void setToolbar() {
-        toolbar = binding.toolbar;
-
+    private void setUpToolbar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            activity.setSupportActionBar(toolbar);
-        }
+            activity.setSupportActionBar(binding.toolbar);
 
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Golf Menu");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-        }
-    }
+            ActionBar actionBar = activity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+            }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            // Handle the back button action
-            navController.navigateUp();
-            return true;
+            // Set Toolbar navigation click listener
+            binding.toolbar.setNavigationOnClickListener(v -> navController.navigateUp());
         }
-        return super.onOptionsItemSelected(item);
     }
 
 }
