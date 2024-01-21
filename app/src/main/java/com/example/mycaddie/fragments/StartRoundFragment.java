@@ -20,10 +20,17 @@ import android.view.ViewGroup;
 
 import com.example.mycaddie.R;
 import com.example.mycaddie.databinding.FragmentStartRoundBinding;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 public class StartRoundFragment extends Fragment {
 
     private StartRoundViewModel mViewModel;
+    private MapView mapView;
+    private GoogleMap googleMap;
     FragmentStartRoundBinding binding;
     NavController navController;
 
@@ -44,6 +51,9 @@ public class StartRoundFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentStartRoundBinding.inflate(inflater,container,false);
         navController = NavHostFragment.findNavController(this);
+        // Initialize MapView
+        mapView = binding.mapView;
+        mapView.onCreate(savedInstanceState);
 
         return binding.getRoot();
     }
@@ -53,8 +63,30 @@ public class StartRoundFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpToolbar();
+        setUpMap();
         setUpButtons();
     }
+    private void setUpMap() {
+        // Setup map
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap gMap) {
+                googleMap = gMap;
+                // Configure your map here
+                LatLng defaultLocation = new LatLng(40.7128, -74.0060); // Replace with your desired coordinates
+                float defaultZoomLevel = 12.0f; // Zoom level (1: World, 15: Streets, 20: Buildings)
+
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, defaultZoomLevel));
+
+                // Optional: Enable user interface controls like zoom buttons, compass, etc.
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.getUiSettings().setCompassEnabled(true);
+
+            }
+        });
+
+    }
+
 
     private void setUpButtons() {
 
@@ -76,6 +108,47 @@ public class StartRoundFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        mapView.onStop();
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        mapView.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
 
 
 }
