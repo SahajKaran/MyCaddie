@@ -60,10 +60,21 @@ public class MainFragment extends Fragment {
         binding.golfTxt.setOnClickListener(v -> {
             moveToGolfMenu();
         });
+
+        binding.profileIcon.setOnClickListener(view -> {
+            moveToProfileMenu();
+        });
+        binding.profileText.setOnClickListener(view -> {
+            moveToProfileMenu();
+        });
     }
 
     private void moveToGolfMenu() {
         navController.navigate(R.id.action_mainFragment_to_golfMenuFragment);
+    }
+
+    private void moveToProfileMenu() {
+        navController.navigate(R.id.action_mainFragment_to_profileFragment);
     }
 
 }

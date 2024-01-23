@@ -22,7 +22,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/limegreen"
+            android:background="@color/lightblue"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:padding="5dp"
-            android:layout_marginBottom="150dp">
+            android:layout_marginBottom="200dp">
 
             <TextView
                 android:id="@+id/start_txt"
@@ -44,24 +44,71 @@
                 android:layout_height="wrap_content"
                 android:text="@string/start_round"
                 android:padding="5dp"
-                android:textSize="20sp"
+                android:textSize="35sp"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/black"
-                android:fontFamily="serif"
-                app:layout_constraintStart_toEndOf="@id/start_img"
-                app:layout_constraintTop_toTopOf="@id/start_img"
-                app:layout_constraintBottom_toBottomOf="@id/start_img"/>
+                android:fontFamily="@font/technicn"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/start_img"
+                app:layout_constraintStart_toStartOf="@+id/start_img"
+                app:layout_constraintEnd_toEndOf="@+id/start_img"
+                />
 
             <ImageView
                 android:id="@+id/start_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/starticon"
+                android:background="@drawable/startround"
                 android:clickable="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/block2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/block1"
+            android:layout_marginBottom="25dp"
+            android:padding="5dp"
+            >
+
+            <ImageView
+                android:id="@+id/cart_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cart"
+                android:clickable="true"
+                android:layout_marginStart="15dp"
+                app:layout_constraintStart_toStartOf="@id/block2"
+                app:layout_constraintTop_toTopOf="@id/block2"
+                />
+
+            <TextView
+                android:id="@+id/cart_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Players"
+                android:padding="5dp"
+                android:textSize="30sp"
+                android:layout_marginStart="35dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/technicn"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/cart_img"
+                app:layout_constraintTop_toTopOf="@id/cart_img"
+                app:layout_constraintBottom_toBottomOf="@id/cart_img"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
